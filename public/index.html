@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Work Order Tracker — Harborview Offices</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="28" height="28">
+            <rect x="1" y="1" width="30" height="30" rx="7" fill="#c56a16" />
+            <path
+              d="M10 18.5 14.2 22.7 22.5 11.5"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div>
+          <p class="eyebrow">Harborview Offices · sample data</p>
+          <h1>Work Order Tracker</h1>
+        </div>
+      </div>
+      <button class="primary" id="new-order" type="button">New work order</button>
+    </header>
+
+    <section class="stats" id="stats" aria-label="Work order totals"></section>
+
+    <section class="toolbar">
+      <label class="search">
+        <span class="sr-only">Search</span>
+        <input id="search" type="search" placeholder="Search title, location, or assignee" />
+      </label>
+      <label>
+        Status
+        <select id="filter-status">
+          <option value="">All</option>
+          <option>Open</option>
+          <option>In Progress</option>
+          <option>On Hold</option>
+          <option>Closed</option>
+        </select>
+      </label>
+      <label>
+        Priority
+        <select id="filter-priority">
+          <option value="">All</option>
+          <option>Urgent</option>
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+      </label>
+      <label>
+        Category
+        <select id="filter-category">
+          <option value="">All</option>
+          <option>HVAC</option>
+          <option>Plumbing</option>
+          <option>Electrical</option>
+          <option>General</option>
+          <option>Safety</option>
+          <option>Grounds</option>
+        </select>
+      </label>
+    </section>
+
+    <main>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Work order</th>
+              <th>Location</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Due</th>
+              <th>Assignee</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <p class="empty" id="empty" hidden>No work orders match these filters.</p>
+      </div>
+    </main>
+
+    <footer>
+      Sample app for a local building. Work orders are stored in a JSON file on this machine.
+    </footer>
+
+    <dialog id="editor">
+      <form id="editor-form" method="dialog">
+        <h2 id="editor-title">New work order</h2>
+        <input type="hidden" id="field-id" />
+        <label>Title<input id="field-title" required maxlength="120" /></label>
+        <div class="grid">
+          <label>Location<input id="field-location" maxlength="80" /></label>
+          <label>Category
+            <select id="field-category">
+              <option>HVAC</option>
+              <option>Plumbing</option>
+              <option>Electrical</option>
+              <option selected>General</option>
+              <option>Safety</option>
+              <option>Grounds</option>
+            </select>
+          </label>
+          <label>Priority
+            <select id="field-priority">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+              <option>Urgent</option>
+            </select>
+          </label>
+          <label>Status
+            <select id="field-status">
+              <option selected>Open</option>
+              <option>In Progress</option>
+              <option>On Hold</option>
+              <option>Closed</option>
+            </select>
+          </label>
+          <label>Requested by<input id="field-requested" maxlength="80" /></label>
+          <label>Assigned to<input id="field-assigned" maxlength="80" /></label>
+          <label>Due date<input id="field-due" type="date" /></label>
+        </div>
+        <label>Notes<textarea id="field-notes" rows="3" maxlength="500"></textarea></label>
+        <p class="form-error" id="form-error" hidden></p>
+        <div class="actions">
+          <button type="button" class="danger" id="delete-order" hidden>Delete</button>
+          <span class="spacer"></span>
+          <button type="button" class="ghost" id="cancel-edit" value="cancel">Cancel</button>
+          <button type="submit" class="primary" id="save-order">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

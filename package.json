@@ -1,0 +1,19 @@
+{
+  "name": "maintenance-work-order-tracker",
+  "version": "1.0.0",
+  "description": "A small local web app for tracking building maintenance work orders.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": ["maintenance", "work-orders", "facilities", "express"],
+  "author": "Mathew Timeus",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
